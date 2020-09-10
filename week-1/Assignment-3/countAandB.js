@@ -12,9 +12,9 @@ function countAandB(input){
             B++
         }
     }
-    console.log('總共有' + A + '個a')
-    console.log('總共有' + B + '個b')
+    return ('總共有' + A + '個a'+' ' + B + '個b')
+
 }
 
 
-    console.log(countAandB(input));
+console.log(countAandB(input));
