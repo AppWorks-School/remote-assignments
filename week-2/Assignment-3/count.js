@@ -14,7 +14,6 @@ function count(input){
             var letter={};                      //就會把字母:1擺進去
             letter[input[i]]=1;                 //每else 一次就會有一個字母:1 可是這樣會有4個物件{字母:1}
             sum = Object.assign(sum,letter)     //Object.assign比較像複製 letter是來源 sum是擺放的目標  最終會把四個物件 變成在sum{}裡面
-            console.log(letter)
         }
     }
     return sum
