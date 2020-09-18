@@ -1,27 +1,32 @@
-// 1. count: return an object which shows the count of each characters.
-// 2. groupByKey: return an object which shows the summed up value of each keys.
-// This time, you may get letters from ‘a’ to ‘z’, try to avoid using ‘if’ or ‘switch’ to split each letter
-// into different cases (e.g. if(letter == ‘a’) {…} else if (letter == ‘b’) {…} ), otherwise, your code
-// will be very long.
-// Note:
-// 1. The input format is different for these two functions.
-// 2. In the second function, the input may have same key but different values, the output
-// should have each key only once.
-// function count(input) {
-// // your code here
-// }
-// let input1 = ['a', 'b', 'c', 'a', 'c', ‘a’, ’x’];
-// console.log(count(input1));
-// // should print {'a':3, 'b':1, 'c':2, ‘x':1}
-// function groupByKey(input) {
-// // your code here
-// }
-// let input2 = [
-//  {key: 'a', value: 3},
-//  {key: 'b', value: 1},  
-//  {key: 'c', value: 2},
-//  {key: 'a', value: 3},
-//  {key: 'c', value: 5}
-// ]
-// console.log(groupByKey(input2));
-// // should print {'a':6, 'b':1, ‘c’:7}
+
+let input = [
+ {key: 'a', value: 3},
+ {key: 'b', value: 1},  
+ {key: 'c', value: 2},
+ {key: 'a', value: 3},
+ {key: 'c', value: 5},
+]
+
+//給一個數列裡面有物件 key會有a~z value則不一定
+//最後的output要是{key:value , key:value }
+//如何把 key拿出來 如何把value拿出來
+//key 拿出來方法:for 迴圈 input[i].key 全部key拿出來
+//value拿出來方法 for迴圈 input[i].value 全部value就都會拿出來
+//sum[input.[i].key]=input[i].value
+//會輸出為最大數 可是不加總???
+function groupByKey(input){
+    var sum={}
+
+    for (let i=0 ;input.length > i ; i++){
+        if (sum[input[i].key]){
+            sum[input[i].key] += input[i].value
+        }
+        else {
+            sum[input[i].key]=input[i].value
+        }
+    }
+    console.log(sum)
+}
+console.log(groupByKey(input))
+// console.log(groupByKey(input));
+// should print {'a':6, 'b':1, ‘c’:7}
