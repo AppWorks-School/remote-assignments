@@ -14,18 +14,21 @@ let input = [
 //value拿出來方法 for迴圈 input[i].value 全部value就都會拿出來
 //sum[input.[i].key]=input[i].value
 //會輸出為最大數 可是不加總???
+//思路  if如果有東西就+= 
+//      else 沒有東西就把它給擺進去  
+//      結果出來 其實它裡面擺放的都是key 並沒有value 
+//     
 function groupByKey(input){
-    var sum={}
-
-    for (let i=0 ;input.length > i ; i++){
-        if (sum[input[i].key]){
+    var sum={}                                          
+    for (let i=0 ;input.length > i ; i++ ){             
+        if (sum[input[i].key]){                         
             sum[input[i].key] += input[i].value
         }
         else {
-            sum[input[i].key]=input[i].value
+            sum[input[i].key] = input[i].value        
         }
     }
-    console.log(sum)
+    return sum
 }
 console.log(groupByKey(input))
 // console.log(groupByKey(input));
