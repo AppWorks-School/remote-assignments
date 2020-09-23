@@ -1,17 +1,10 @@
 var express = require('express');
 var app = express();
 
-
-//寫number以下的函數
-//如果number=5 回傳1+2+3+4+5
-//如果number='正整數' 回傳1+2+3...+正整數  
-
-
 app.get('/',function(req,res) {
     res.send('Hello , world');
 });
 
-//卡關點 number無法用for計算?
 app.get('/getData',function(req,res){
     var number = req.query.number
     
@@ -36,6 +29,11 @@ app.get('/getData',function(req,res){
     }
 }
 )
+
+app.use(express.static(__dirname + '/public'));
+
+
+
 app.listen(3000,function(){
     console.log('Server is working')
 })
