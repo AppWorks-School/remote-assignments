@@ -30,8 +30,7 @@ app.get('/getData',function(req,res){
 }
 )
 
-app.use(express.static(__dirname + '/public'));
-
+app.use(express.static(__dirname + '/assignment-3'));
 
 
 app.listen(3000,function(){
