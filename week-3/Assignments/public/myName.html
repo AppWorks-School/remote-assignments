@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="cookie">你的cookie請點選下面按鈕</p>    
+    <input type="button" id="btn" onclick="push()" value="顯示">
+    <br><br><br>
+    <form action="http://127.0.0.1:3000/trackName" method="GET">
+        用戶名:<input type="text" name="name" id="name"><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
+
+
+<script>
+    function push(){
+        var x = document.cookie
+        document.getElementById('cookie').innerHTML=x
+    }
+
+</script>

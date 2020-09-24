@@ -3,6 +3,9 @@ var app = express();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var fs = require('fs')
+
+
 
 app.get('/',function(req,res) {
     res.send('Hello , world');
@@ -44,7 +47,18 @@ app.post('/sum',urlencodedParser,function(req,res){
     res.send('答案是'+total)
 })
 
+//開啟搭建窗口到靜態文件html
+app.get('/myName',function(req,res){
+    res.sendFile(__dirname+"/"+"public"+"/"+"myName.html")     
+})
 
+//重新導向網頁 並可以顯示name
+app.get('/trackName',function(req,res){ 
+    var url=req.url
+    var user=req.query.name
+    res.cookie('name',user)
+    res.redirect('/myName')
+})
 
 app.use(express.static(__dirname + '/public'));
 
