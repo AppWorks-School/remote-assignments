@@ -15,31 +15,21 @@
     </div>
     <p id='answer'>答案</p>
     <br><br><br><br>
-    <div>
-        <input type="text" id="num" name="num">
-        <input type="button" value="顯示" id="touch" onclick="sum()">
-    </div>
-    <p id='answer-2'>答案</p>
+    <form method="POST" action="http://127.0.0.1:3000/sum" >
+        <input type="number" id="num" name="num" min="1">
+        <input type="submit">
+    </form>
+
 
     <script type="text/javascript" >
-
+    
     function push(){
         var ajax = new XMLHttpRequest();
         ajax.open('get','getData?number=10',true);
         ajax.send(document.getElementById('answer').innerHTML='55')
     }    
 
-    function sum(){
-        var number =$('#num').val();
-        var total=0;
-        for (let i=0 ; number>=i ; i++){
-            total+=i
-        }
-        document.getElementById('answer-2').innerHTML='階加的答案是'+total
-        
-    }
-
-    
+ 
     </script>
 </body>
 </html>
