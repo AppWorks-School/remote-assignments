@@ -12,29 +12,20 @@ app.get('/',function(req,res) {
 });
 
 app.get('/getData',function(req,res){
-    var number = req.query.number
-    
-    if (number == null){                       
+    var number = req.query.number;
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    if (number == null ){
         res.send("Lack of Parameter");
-    }
-
-    else if (number == '正整數'){
-        res.send('1+2+....+正整數')
-    }
-    else if (!isNaN(number) == true){           
-        var result=''
+    }else if (!isNaN(number) == true){
+        var result=0
         for( let i=1 ; number >= i ; i++){
-            result += i+'+'
-        }
-        last=result.substring(0,result.length-1)   
-        res.send(last)
+            result += i
+        }   
+        res.json(result)  
+    }else {
+        res.send("Wrong Parameter");
     }
-
-    else {
-        res.send("Wrong Parameter")
-    }
-}
-)
+});
 
 // assignment -3.4
 app.post('/sum',urlencodedParser,function(req,res){
@@ -52,13 +43,16 @@ app.get('/myName',function(req,res){
     res.sendFile(__dirname+"/"+"public"+"/"+"myName.html")     
 })
 
-//重新導向網頁 並可以顯示name
+//重新導向網頁 判斷輸入帳號 並可以顯示name
 app.get('/trackName',function(req,res){ 
     var url=req.url
     var user=req.query.name
     res.cookie('name',user)
-    res.redirect('/myName')
+    res.redirect('myName')
+    
 })
+
+
 
 app.use(express.static(__dirname + '/public'));
 

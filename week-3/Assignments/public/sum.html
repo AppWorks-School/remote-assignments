@@ -8,11 +8,10 @@
 </head>
 <body>
     <h1>Assignment-3</h1>
-    <p>10的階加</p>
-    <div >
-        <input type="button"  value="顯示" id='submit' name='submit' onclick="push()">
-
-    </div>
+    <form method="GET" action="getData">
+        請輸入個正整數:<input type="text" id="number" name="number">
+        <input type="button"  value="顯示" id="but">
+    </form>
     <p id='answer'>答案</p>
     <br><br><br><br>
     <form method="POST" action="http://127.0.0.1:3000/sum" >
@@ -22,14 +21,18 @@
 
 
     <script type="text/javascript" >
-    
-    function push(){
-        var ajax = new XMLHttpRequest();
-        ajax.open('get','getData?number=10',true);
-        ajax.send(document.getElementById('answer').innerHTML='55')
-    }    
-
- 
+        document.getElementById('but').addEventListener('click',function(){
+            var ajax=new XMLHttpRequest();
+            var number = $('#number').val()
+            ajax.open('GET','http://127.0.0.1:3000/getData?number='+number,true)
+            ajax.onreadystatechange = function(){
+                if (ajax.status == 200 || 304){
+                    document.getElementById('answer').innerHTML=ajax.response
+                }
+            }
+            
+            ajax.send()
+        })
     </script>
 </body>
 </html>
