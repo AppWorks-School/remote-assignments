@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='btn' name='btn' >在下面顯示</button>
+    <p id=data></p>
+</body>
+</html>
+
+<script>
+    //ajax()動作 //把open裡面的src拿出來當參數 ajax.response當callback 拿出來動作
+
+
+function ajax (src,callback){
+        var ajax=new XMLHttpRequest();
+        ajax.open('GET',src,true)
+        ajax.onreadystatechange = function(){
+            if (ajax.readyState == 4){
+                callback(ajax.responseText)
+            }
+        }
+        ajax.send()
+}
+
+function render(response){
+    var btn = document.createElement("p");   
+    data.innerHTML = response;                  
+    document.body.appendChild(data);
+}
+
+ajax('https://cwpeng.github.io/live-records-samples/data/products.json',function (response){
+    render(response)
+})
+
+
+</script>
+
