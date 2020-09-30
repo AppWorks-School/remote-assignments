@@ -64,13 +64,22 @@ app.get('/sign-upp',function(req,res){
     //下方這個資料key是對應sql的key email 後面的email是使用者輸入的email 同理password
     var user = {email:email,password:password};
     //用sql語法插入上面的物件 比對到email跟password 新增他們
-    db.query('insert into user set ?',user,function (err,result){
-        if (err) throw err;
-        console.log('ok')
-        //下面會跑出此次成功的資料
-        console.log(result)
-        //成功就導回首頁
-        res.sendFile(__dirname+'/'+'public' +'/'+'home.html')
+    var insert = "insert into user set ?"
+    var selectSQL = "select * from user where email ='"+email+"' and password='"+password+"'";
+
+
+    db.query(selectSQL,function(err,result){
+        //下面是當sql裡面沒有email跟password的動作 新增資料
+        if (result == ''){
+            db.query(insert,user,function(err,result){
+                if (err) throw err;
+                console.log(result)
+                res.sendFile(__dirname+'/'+'public' +'/'+'home.html')
+            })
+        }
+        else {
+            res.send('你輸入的帳號密碼有人使用過了')
+        }
     })
 })
 

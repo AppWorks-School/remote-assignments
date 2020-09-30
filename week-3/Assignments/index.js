@@ -48,7 +48,12 @@ app.get('/trackName',function(req,res){
     var url=req.url
     var user=req.query.name
     res.cookie('name',user)
-    res.redirect('myName')
+    if (user == 1234){
+        res.redirect('myName')
+    }else {
+        res.send('請乖乖輸入1234唷')
+    }
+    
     
 })
 
